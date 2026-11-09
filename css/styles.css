@@ -1,0 +1,144 @@
+:root {
+    --violeta-principal: #301e63;
+    --turquesa-principal: #0fc5ce;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+button.claro {
+    background-color: var(--turquesa-principal);
+    color: white;
+    border-radius: 10px;
+    padding: 10px 24px;
+    font-size: 1rem;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: var(--turquesa-principal);
+}
+
+/* =================================================
+        Pantalla bienvenida usuario y admin
+================================================= */
+
+/* ---------- Nav ---------- */
+.barraNav {
+    background-color: #f3f3f3;
+    border-bottom: 3px solid var(--turquesa-principal);
+    height: clamp(70px, 12vw, 150px); /* mínimo 70px, ideal 12vw, máximo 150px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 16px;
+}
+
+.barraNav img {
+    height: 100%;
+    max-width: 100%;      /* nunca más ancho que la barra */
+    width: auto;
+    object-fit: contain;  /* si hay que achicarla, mantiene la proporción */
+}
+
+/* ---------- Main y caja de bienvenida ---------- */
+.mainBienvenida {
+    background-color: #dbdee1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.sectionBienvenida {
+    border: 1px solid var(--turquesa-principal);
+    background-color: #f3f3f3;
+    width: min(90vw, 700px);  /* 90% del ancho, nunca más de 700px */
+    min-height: 60vh;         /* crece si el contenido no entra */
+    border-radius: 15px;
+    padding: clamp(16px, 4vw, 50px); /* mínimo 16px, ideal 4vw, máximo 50px */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 24px;
+}
+
+/* ---------- Formulario ---------- */
+.contForm,
+#formClienteInicio,
+#formAdminInicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+#formClienteInicio,
+#formAdminInicio {
+    width: 100%;
+}
+
+.contForm p {
+    font-size: clamp(1.5rem, 5vw, 3rem); /* mínimo 1.5rem, ideal 5vw, máximo 3rem */
+    text-align: center;
+}
+
+#techno {
+    color: #dbdee1;
+    -webkit-text-stroke: 1px var(--turquesa-principal); /* borde de color */
+}
+
+#letraX {
+    color: var(--violeta-principal);
+}
+
+.labelForm {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem); /* mínimo 1.1rem, ideal 2.5vw, máximo 1.5rem */
+}
+
+.inputForm {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: clamp(1rem, 2.5vw, 1.5rem); /* mínimo 1rem, ideal 2.5vw, máximo 1.5rem */
+    text-align: center;
+    border: 1px solid var(--turquesa-principal);
+    border-radius: 8px;
+}
+
+.inputForm:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(15, 197, 206, 0.3); /* le agrega una sombra el pinput cuando está seleccionado */
+}
+
+#usuarioAdminInicio,
+#contraseniaAdminInicio {
+    padding: 0;
+}
+
+/* ---------- Acceso administrador ---------- */
+.contAccesoAdmin,
+.contAccesoCliente {
+    text-align: center;
+}
+
+
+
+
