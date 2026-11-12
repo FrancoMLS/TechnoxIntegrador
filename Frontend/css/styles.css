@@ -140,5 +140,47 @@ a {
 }
 
 
+/* =================================================
+        Pantalla productos, vista del cliente
+================================================= */
+
+/* ------------- Barra nav --------------------*/
+.barraNavProductos {
+    background-color: #f3f3f3;
+    border-bottom: 3px solid var(--turquesa-principal);
+    height: clamp(70px, 12vw, 150px); /* mínimo 70px, ideal 12vw, máximo 150px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 16px;
+}
+
+.barraNavProductos img {
+    height: 70%;
+    max-width: 100%;      /* nunca más ancho que la barra */
+    width: auto;
+    object-fit: contain;  /* si hay que achicarla, mantiene la proporción */
+}
+
+svg {
+    height: 60%;
+    max-width: 80%;      /* nunca más ancho que la barra */
+    width: auto;
+    object-fit: contain;  /* si hay que achicarla, mantiene la proporción */
+}
+
+.listaProductos {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+}
 
 
+
+/* ------------------------------------------------------- */
+
+.card-img {
+    width: 200px;
+}
