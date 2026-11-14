@@ -21,7 +21,7 @@
         <div class="menu">
             <ul class="listaProductos">
                 <li>
-                    <a href="#">
+                    <a href="carrito.html">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" height="40px" width="40px" fill="#0fc5ce"><path d="M20,16.28l-1.94-1.94l2.93-2.94H13.61V8.61h7.38L18.04,5.67L20,3.72L26.28,10L20,16.28ZM9.74,35.75q-0.91-0.92-0.91-2.2t0.92-2.2t2.2-0.91t2.2,0.92t0.91,2.2t-0.92,2.2t-2.2,0.91t-2.2-0.92Zm16.78,0q-0.91-0.92-0.91-2.2t0.92-2.2t2.2-0.91t2.2,0.92t0.91,2.2t-0.92,2.2t-2.2,0.91t-2.2-0.92ZM2.28,6.11V3.33H7.32L14.4,18.44H26.28L32.9,6.78h3.12L29.08,19.61q-0.46,0.81-1.2,1.28t-1.63,0.47H13.69l-2.17,4H31.83v2.78H11.78q-1.67,0-2.54-1.37T9.14,23.97l2.53-4.64L5.56,6.11H2.28Z"/></svg>
                     </a>
                     
@@ -116,6 +116,7 @@
         }
     }
 
+    
     function renderizarProductos(array) {
         let htmlProductos = "";
 
@@ -126,12 +127,49 @@
                     <h4>${producto.nombre}</h4>
                     <p>Id: ${producto.id}</p>
                     <p>$${producto.precio}</p>
+
+                    <button class="btn-agregar"
+                        onclick="agregarAlCarrito(${producto.id})">
+                        + Agregar al carrito
+                    </button>
                 </div>
             `;
         });
 
         contenedorProductos.innerHTML = htmlProductos;
     }
+
+    function agregarAlCarrito(id) {
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        const producto = productosCargados.find(p => p.id == id);
+
+        if (!producto) {
+            alert("No se encontró el producto.");
+            return;
+        }
+
+        const productoExistente = carrito.find(p => p.id == id);
+
+        if (productoExistente) {
+            productoExistente.cantidad++;
+        } else {
+            carrito.push({
+                id: producto.id,
+                nombre: producto.nombre,
+                precio: producto.precio,
+                imagen: producto.imagen,
+                categoria: producto.categoria,
+                cantidad: 1
+            });
+        }
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+
+        window.location.href = "carrito.html";
+    }
+
+
     function filtrarCategoria(categoria) {
 
     let termino = categoria.toLowerCase().includes("celular")

@@ -321,3 +321,24 @@ svg {
     font-size: 20px;
     font-weight: bold;
 }
+
+
+
+.btn-agregar {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--violeta-principal);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-agregar:hover {
+    background-color: var(--turquesa-principal);
+    transform: scale(1.03);
+}
