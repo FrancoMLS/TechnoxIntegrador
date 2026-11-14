@@ -44,9 +44,9 @@
 
 
 <main>
-    <h1 id="saludoCliente"></h1>
-
+    
     <section class="seccion-categorias">
+        <h2>¡Hola, <span id="nombre-usuario"></span>!</h2>
         <h2>¿Qué estás buscando hoy?</h2>
 
         <div class="contenedor-categorias">
@@ -79,12 +79,16 @@
     </section>
 </main>
 
-        
 
-    <script>
+<script>
     const urlBase = "http://localhost:3001";
     const contenedorProductos = document.getElementById("contenedorProductos");
     let productosCargados = [];
+    const nombre = sessionStorage.getItem('nombreCliente');
+    
+    document.getElementById('nombre-usuario').textContent = nombre || 'invitado';
+  
+  
     function mostrarError(mensaje) {
         contenedorProductos.innerHTML = `
             <p class="mensaje error">${mensaje}</p>

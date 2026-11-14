@@ -21,9 +21,6 @@
         <div class="menuAdmin">
             <ul class="listaMenuAdmin">
                 <li>
-                    <a href="#">Ventas</a>
-                </li>
-                <li>
                     <a href="index.html">Salir</a>
                 </li>
 
@@ -42,7 +39,7 @@
 
         <section>
             <div class="submenuAdminProd">
-                <h2 class="nuestrosProductos">Productos</h2>
+                <!-- <h2 class="nuestrosProductos">Productos</h2> -->
 
                 <form id="formBusquedaId">
                     <label for="idProd">Id producto:</label>
@@ -60,6 +57,10 @@
 
                 <div class="menuCategorias">
                     <button type="button" class="botonAgregar">+ Agregar nuevo producto</button>
+                </div>
+
+                <div>
+                    <button type="button" class="descargarVentas">Descargar ventas</button>
                 </div>
             </div>
             <div id="contenedorProductosAdmin">
@@ -137,6 +138,7 @@
                 <div class="card-producto-admin">
                     <img class="card-img-admin" src="${producto.imagen}" alt="${producto.nombre}">
                     <h4>${producto.nombre}</h4>
+                    <p>${producto.categoria}</p>
                     <p>ID:${producto.id}</p>
                     <p>$${producto.precio}</p> 
                     <div class="div-botones-admin">       
@@ -198,6 +200,7 @@
                 <div class="card-producto-admin">
                     <img class="card-img-admin" src="${producto.imagen}" alt="${producto.nombre}">
                     <h4>${producto.nombre}</h4>
+                    <p>${producto.categoria}</p>
                     <p>ID:${producto.id}</p>
                     <p>$${producto.precio}</p> 
                     <div class="div-botones-admin">       

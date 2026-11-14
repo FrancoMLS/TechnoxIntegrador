@@ -71,6 +71,20 @@ button.botonAgregar:hover {
     background-color: #0c9c13;
 }
 
+button.descargarVentas {
+    background-color: var(--turquesa-principal);
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 24px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button.descargarVentas:hover {
+    background-color: var(--violeta-principal);
+}
 
 /* =================================================
         3. PANTALLA BIENVENIDA (USUARIO Y ADMIN)
