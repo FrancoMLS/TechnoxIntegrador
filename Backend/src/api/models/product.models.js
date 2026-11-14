@@ -1,8 +1,12 @@
 import connection from "../database/db.js";
 
 // Obtener todos los productos activos
-const selectAllProducts = () => {
-    const sql = "SELECT * FROM productos WHERE activo = TRUE";
+const selectAllProducts = (traerTodos = false) => {
+    let sql = "SELECT * FROM productos";
+
+    if (!traerTodos) {
+        sql += " WHERE activo = TRUE";
+    }
     return connection.query(sql);
 };
 

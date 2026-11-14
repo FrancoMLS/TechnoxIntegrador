@@ -3,7 +3,11 @@ import ProductModels from "../models/product.models.js";
 // Obtener todos los productos
 export const getAllProducts = async (req, res) => {
     try {
-        const [rows] = await ProductModels.selectAllProducts();
+        // Verificamos si en la petición viene ?admin=true
+        const esAdmin = req.query.admin === 'true';
+
+
+        const [rows] = await ProductModels.selectAllProducts(esAdmin);
 
         if (rows.length === 0) {
             return res.status(404).json({
