@@ -122,3 +122,25 @@ export const removeProduct = async (req, res) => {
         });
     }
 };
+// Reactivar un producto
+export const activateProduct = async (req, res) => {
+    try {
+        const [result] = await ProductModels.activateProduct(req.id);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                mensaje: "Producto no encontrado"
+            });
+        }
+
+        res.status(200).json({
+            mensaje: "Producto reactivado correctamente"
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            mensaje: "Error al reactivar el producto"
+        });
+    }
+};

@@ -42,6 +42,11 @@ const deactivateProduct = (id) => {
     const sql = "UPDATE productos SET activo = FALSE WHERE id = ?";
     return connection.query(sql, [id]);
 };
+// Reactivar un producto
+const activateProduct = (id) => {
+    const sql = "UPDATE productos SET activo = TRUE WHERE id = ?";
+    return connection.query(sql, [id]);
+};
 
 // Exportamos los modelos
 export default {
@@ -49,5 +54,6 @@ export default {
     selectProductById,
     insertNewProduct,
     updateProduct,
-    deactivateProduct
+    deactivateProduct,
+    activateProduct
 };
