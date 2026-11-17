@@ -12,15 +12,27 @@ import environments from "./src/api/config/environments.js";
 import connection from "./src/api/database/db.js";
 
 // Importamos las rutas
-import { productRoutes } from "./src/api/routes/index.js";
+import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
 
 // Importamos los middlewares
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
 
+import { __dirname, join } from "./src/api/utils/index.js";
+
+
 // Inicializamos Express
 const app = express();
 
+
+app.set("view engine", "ejs"); // Configuramos EJS como motor de plantillas
+app.set("views", join(__dirname, "src/views")); // Le indicamos donde se encuentran las vistas ejs -> src/views
+
+
+
 // Middlewares
+// Middleware para servir archivos estaticos
+app.use(express.static(join(__dirname, "src/public"))); // Ahora decimos que los archivos estaticos estan en public
+
 app.use(cors());
 app.use(express.json());
 app.use(loggerUrl);
@@ -51,6 +63,11 @@ app.get("/probar-db", async (req, res) => {
 
 // Registramos las rutas de productos
 app.use("/api/products", productRoutes);
+
+
+// Redirijo todas las peticiones a /dashboard a viewRoutes.js
+app.use("/dashboard", viewRoutes)
+
 
 // Iniciamos el servidor
 app.listen(environments.port, () => {

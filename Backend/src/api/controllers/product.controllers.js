@@ -1,7 +1,7 @@
 import ProductModels from "../models/product.models.js";
 
 // Obtener todos los productos
-export const getAllProducts = async (req, res) => {
+const getAllProducts = async (req, res) => {
     try {
         // Verificamos si en la petición viene ?admin=true
         const esAdmin = req.query.admin === 'true';
@@ -29,8 +29,8 @@ export const getAllProducts = async (req, res) => {
 };
 
 // Obtener un producto por ID
-export const getProductById = async (req, res) => {
-    try {
+const getProductById = async (req, res) => {
+try {
         const [rows] = await ProductModels.selectProductById(req.id);
 
         if (rows.length === 0) {
@@ -52,7 +52,7 @@ export const getProductById = async (req, res) => {
 };
 
 // Crear un producto
-export const createProduct = async (req, res) => {
+const createProduct = async (req, res) => {
     try {
         const { nombre, precio, imagen, categoria, activo } = req.body;
 
@@ -74,7 +74,7 @@ export const createProduct = async (req, res) => {
 };
 
 // Modificar un producto
-export const modifyProduct = async (req, res) => {
+const modifyProduct = async (req, res) => {
     try {
         const { nombre, precio, imagen, categoria, activo, id } = req.body;
 
@@ -101,7 +101,7 @@ export const modifyProduct = async (req, res) => {
 };
 
 // Dar de baja un producto (baja lógica)
-export const removeProduct = async (req, res) => {
+const removeProduct = async (req, res) => {
     try {
         const [result] = await ProductModels.deactivateProduct(req.id);
 
@@ -123,7 +123,7 @@ export const removeProduct = async (req, res) => {
     }
 };
 // Reactivar un producto
-export const activateProduct = async (req, res) => {
+const activateProduct = async (req, res) => {
     try {
         const [result] = await ProductModels.activateProduct(req.id);
 
@@ -144,3 +144,22 @@ export const activateProduct = async (req, res) => {
         });
     }
 };
+
+
+////////////////////////////
+// Obtener productos activos
+const selectActiveProducts = () => {
+    const sql = "SELECT * FROM products WHERE products.active = ?";
+    return connection.query(sql, [1]);
+}
+
+export {
+    getAllProducts,
+    getProductById,
+    createProduct,
+    modifyProduct,
+    removeProduct,
+    activateProduct,
+    selectActiveProducts
+}
+    

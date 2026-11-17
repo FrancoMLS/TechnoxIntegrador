@@ -1,7 +1,5 @@
-import ProductModels from "../models/product.models.js";
-
 // Registrar las solicitudes que llegan al servidor
-export const loggerUrl = (req, res, next) => {
+const loggerUrl = (req, res, next) => {
     console.log(
         new Date().toLocaleString(),
         req.method,
@@ -12,7 +10,7 @@ export const loggerUrl = (req, res, next) => {
 };
 
 // Validar el ID recibido por parámetro
-export const validateId = (req, res, next) => {
+const validateId = (req, res, next) => {
     const id = Number(req.params.id);
 
     if (!Number.isInteger(id) || id <= 0) {
@@ -27,7 +25,7 @@ export const validateId = (req, res, next) => {
 };
 
 // Validar los datos de un producto
-export const validateProduct = (req, res, next) => {
+const validateProduct = (req, res, next) => {
     const { nombre, precio, categoria } = req.body;
 
     if (!nombre || typeof nombre !== "string") {
@@ -52,3 +50,10 @@ export const validateProduct = (req, res, next) => {
 
     next();
 };
+
+// Exportamos nuestros middlewares para llevarlos a otros modulos
+export {
+    loggerUrl,
+    validateId,
+    validateProduct
+}

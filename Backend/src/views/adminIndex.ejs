@@ -1,0 +1,33 @@
+<%- include("partials/head.ejs") %>
+
+<body>
+    <nav class="barraNav">
+        <img src="/img/Gemini_Generated_Image_wu7h99wu7h99wu7h_nobg.png" alt="Logo Technox">
+    </nav>
+
+    <main class="mainBienvenida">
+        <section class="sectionBienvenida">
+            <div class="contForm">
+                <p>ACCESO ADMINISTRADOR</p>
+
+                <form action="" id="formAdminInicio">
+                    <label class="labelForm" for="usuarioAdminInicio">Ingrese su usuario</label>
+                    <input type="email" id="usuarioAdminInicio" class="inputForm">
+
+                    <label class="labelForm" for="contraseniaAdminInicio">Ingrese su contraseña</label>
+                    <input type="password" id="contraseniaAdminInicio" class="inputForm">
+
+                    <button class="claro" type="submit">Ingresar</button>
+                    <a href="/dashboard/principalAdmin">Simulacion boton ingresar</a>
+                </form>
+                 
+            </div>
+            <div class="contAccesoCliente">
+                <a href="/dashboard/indexCliente">Acceso cliente</a>
+            </div>
+        </section>
+    </main>
+
+     <script src="/js/adminIndex.js"></script>
+</body>
+</html>

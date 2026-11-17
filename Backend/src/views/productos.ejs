@@ -1,0 +1,63 @@
+<%- include("partials/head.ejs") %>
+
+<body>
+
+    <nav class="barraNavProductos">
+        <img src="/img/Gemini_Generated_Image_wu7h99wu7h99wu7h_nobg.png" alt="Logo Technox">
+        <div class="menu">
+            <ul class="listaProductos">
+                <li>
+                    <a href="/dashboard/carrito">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" height="40px" width="40px" fill="#0fc5ce"><path d="M20,16.28l-1.94-1.94l2.93-2.94H13.61V8.61h7.38L18.04,5.67L20,3.72L26.28,10L20,16.28ZM9.74,35.75q-0.91-0.92-0.91-2.2t0.92-2.2t2.2-0.91t2.2,0.92t0.91,2.2t-0.92,2.2t-2.2,0.91t-2.2-0.92Zm16.78,0q-0.91-0.92-0.91-2.2t0.92-2.2t2.2-0.91t2.2,0.92t0.91,2.2t-0.92,2.2t-2.2,0.91t-2.2-0.92ZM2.28,6.11V3.33H7.32L14.4,18.44H26.28L32.9,6.78h3.12L29.08,19.61q-0.46,0.81-1.2,1.28t-1.63,0.47H13.69l-2.17,4H31.83v2.78H11.78q-1.67,0-2.54-1.37T9.14,23.97l2.53-4.64L5.56,6.11H2.28Z"/></svg>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="/dashboard/indexCliente">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" height="40px" width="40px" fill="#0fc5ce"><path d="M11.08,31.67V28.89H23.64q2.82,0 4.87-1.85t2.05-4.6t-2.05-4.6T23.64,16H11.94l4.61,4.61l-1.94,1.94L6.67,14.61l7.94-7.94l1.94,1.94l-4.61,4.61H23.61q3.99,0 6.85,2.65t2.87,6.57t-2.87,6.57t-6.85,2.65H11.08Z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+<main>
+    
+    <section class="seccion-categorias">
+        <h2>¡Hola, <span id="nombre-usuario"></span>!</h2>
+        <h2>¿Qué estás buscando hoy?</h2>
+
+        <div class="contenedor-categorias">
+
+            <div class="card-categoria">
+                <img src="img/celulares.png" alt="Celulares">
+                <h3>CELULARES</h3>
+                <button onclick="filtrarCategoria('Celulares')">
+                    Ver celulares
+                </button>
+            </div>
+
+            <div class="card-categoria">
+                <img src="img/fundas.png" alt="Fundas">
+                <h3>FUNDAS</h3>
+                <button onclick="filtrarCategoria('Fundas')">
+                    Ver fundas
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="seccionNuestrosProductos">
+        <h2>Nuestros productos</h2>
+
+        <div id="contenedorProductos">
+            Cargando productos...
+        </div>
+    </section>
+</main>
+
+ <script src="/js/productos.js"></script>
+</body>
+</html>
