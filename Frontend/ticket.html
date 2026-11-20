@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technox | Admin Productos</title>
+
+    <link rel="shortcut icon" href="img/cropped_circle_image.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="barraNav">
+        <img src="img/Gemini_Generated_Image_wu7h99wu7h99wu7h_nobg.png" alt="Logo Technox">
+    </nav>
+
+    <main class="mainTicket">
+        <p>¡Gracias por su compra!</p>
+
+        <div id="ticket">
+
+        </div>
+
+        <button class="botonTicket" onclick="descargarPDF()">Descargar pdf</button>
+        <button class="botonTicket" onclick="salir()">Salir</button>
+    </main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+
+        const ticket = document.getElementById("ticket");
+        const nombreCliente = sessionStorage.getItem("nombreCliente");
+
+        ticket.innerHTML = `<p class="nombreEmpresaTicket">Technox</p>
+                            </p>
+                            <p class="nombreClienteTicket">Cliente: ${nombreCliente}</p>
+                            `;
+
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        let total = 0;
+
+        carrito.forEach(producto => {
+            const subtotal = producto.precio * producto.cantidad;
+
+            console.log(producto.nombre);
+            console.log(producto.cantidad);
+            console.log(producto.precio);
+            console.log(subtotal);
+            total += subtotal;
+            
+            ticket.innerHTML += `<div class="productoTicket">
+                                    <p> ${producto.nombre}</p>
+                                    <p> (${producto.cantidad})</p>
+                                    <p> ${producto.precio}</p> 
+                                    <p> $${subtotal}</p>
+                                </div>`
+        });
+        ticket.innerHTML += `<p class="totalTicket">TOTAL: $${total}</p>`               
+
+
+
+
+        function descargarPDF() {
+            const ticket = document.getElementById("ticket");
+
+            const opciones = {
+                margin: 10,
+                filename: "ticket-technox.pdf",
+                image: {
+                    type: "jpeg",
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: "mm",
+                    format: "a4",
+                    orientation: "portrait"
+                }
+            };
+
+            html2pdf().set(opciones).from(ticket).save();
+        }
+
+
+        function salir() {
+
+            localStorage.removeItem("carrito");
+            sessionStorage.removeItem("nombreCliente");
+
+            window.location.href = "index.html";
+        }
+
+    </script>
+</body>
+</html>

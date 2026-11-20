@@ -33,6 +33,7 @@
         <div id="contenedorCarrito"></div>
 
         <h2 id="totalCarrito"></h2>
+
     </main>
 
     <script>
@@ -41,6 +42,8 @@
 
         function mostrarCarrito() {
             let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            
+
 
             if (carrito.length === 0) {
                 contenedorCarrito.innerHTML = "<p>Tu carrito está vacío.</p>";
@@ -56,22 +59,41 @@
                 total += subtotal;
 
                 html += `
-                    <div class="card-producto">
-                        <img class="card-img" src="${producto.imagen}" alt="${producto.nombre}">
-                        <h3>${producto.nombre}</h3>
-                        <p>Precio: $${producto.precio}</p>
-                        <p>Cantidad: ${producto.cantidad}</p>
-                        <p>Subtotal: $${subtotal}</p>
+                    <div class="card-producto-carrito">
+                        <div class="div-img-carrito">
+                            <img class="card-img" src="${producto.imagen}" alt="${producto.nombre}">
+                        </div>
+                        <div class="descrip-carrito-card">
+                            <h3>${producto.nombre}</h3>
+                            <p>Precio: $${producto.precio}</p>
+                            <p>Cantidad</p>
 
-                        <button onclick="cambiarCantidad(${producto.id}, -1)">-</button>
-                        <button onclick="cambiarCantidad(${producto.id}, 1)">+</button>
-                        <button onclick="eliminarProducto(${producto.id})">Eliminar</button>
+                            <div class="botonesMasYMenos">
+                                <button class="botonCarritoMenos" onclick="cambiarCantidad(${producto.id}, -1)">-</button>
+                                ${producto.cantidad}
+                                <button class="botonCarritoMas" onclick="cambiarCantidad(${producto.id}, 1)">+</button>
+                            </div>
+                                <button class="botonCarritoLogoEliminar claro" onclick="eliminarProducto(${producto.id})"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="currentColor"><path d="M7,21q-0.82,0-1.41-0.59T5,19V6H4V4H9V3h6V4h5V6H19V19q0,0.82-0.59,1.41T17,21H7ZM17,6H7V19H17V6ZM9,17h2V8H9v9Zm4,0h2V8H13v9ZM7,6V19V6Z"/></svg></button>
+                            <p>Subtotal: $${subtotal}</p>    
+                        </div>
                     </div>
                 `;
             });
 
             contenedorCarrito.innerHTML = html;
-            totalCarrito.innerHTML = "Total: $" + total;
+            if (totalCarrito) {
+                totalCarrito.innerHTML = `
+                                        <div class="totalCarrito">
+                                            <p>Total: $${total}</p>
+                                            <button id="botonComprar">Comprar</button>`
+                                            
+            }
+
+            const botonComprar = document.getElementById("botonComprar");
+            botonComprar.addEventListener("click", (event) => {
+                event.preventDefault();
+                mostrarTicket();
+            })
         }
 
         function cambiarCantidad(id, cambio) {
@@ -98,6 +120,10 @@
 
             localStorage.setItem("carrito", JSON.stringify(carrito));
             mostrarCarrito();
+        }
+
+        function mostrarTicket() {
+            window.location.href = "ticket.html"
         }
 
         mostrarCarrito();
