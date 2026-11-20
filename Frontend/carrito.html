@@ -121,10 +121,55 @@
             localStorage.setItem("carrito", JSON.stringify(carrito));
             mostrarCarrito();
         }
+        async function mostrarTicket() {
+            const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            const nombreCliente = sessionStorage.getItem("nombreCliente");
 
-        function mostrarTicket() {
-            window.location.href = "ticket.html"
+            if (!nombreCliente) {
+                alert("No se encontró el nombre del cliente.");
+                return;
+            }
+
+            if (carrito.length === 0) {
+                alert("El carrito está vacío.");
+                return;
+            }
+
+            try {
+                const respuesta = await fetch("http://localhost:3001/api/sales", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nombre_cliente: nombreCliente,
+                        productos: carrito.map(producto => ({
+                            id: producto.id,
+                            cantidad: producto.cantidad
+                        }))
+                    })
+                });
+
+                const datos = await respuesta.json();
+
+                if (!respuesta.ok) {
+                    alert(datos.mensaje || "No se pudo registrar la venta.");
+                    return;
+                }
+
+                sessionStorage.setItem(
+                    "ventaRegistrada",
+                    JSON.stringify(datos.payload)
+                );
+
+                window.location.href = "ticket.html";
+
+            } catch (error) {
+                console.error("Error al registrar la venta:", error);
+                alert("No se pudo conectar con el servidor. Intentá nuevamente.");
+            }
         }
+
 
         mostrarCarrito();
     </script>

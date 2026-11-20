@@ -4,6 +4,7 @@ import express from "express";
 
 // Importamos CORS
 import cors from "cors";
+import session from "express-session";
 
 // Importamos la configuración del entorno
 import environments from "./src/api/config/environments.js";
@@ -12,8 +13,12 @@ import environments from "./src/api/config/environments.js";
 import connection from "./src/api/database/db.js";
 
 // Importamos las rutas
-import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
-
+import {
+    productRoutes,
+    viewRoutes,
+    saleRoutes,
+    adminRoutes
+} from "./src/api/routes/index.js";
 // Importamos los middlewares
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
 
@@ -35,6 +40,18 @@ app.use(express.static(join(__dirname, "src/public"))); // Ahora decimos que los
 
 app.use(cors());
 app.use(express.json());
+
+app.use(session({
+    secret: environments.sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        secure: false,
+        maxAge: 1000 * 60 * 60
+    }
+}));
+
 app.use(loggerUrl);
 
 // Ruta de prueba del servidor
@@ -63,6 +80,10 @@ app.get("/probar-db", async (req, res) => {
 
 // Registramos las rutas de productos
 app.use("/api/products", productRoutes);
+// Registramos las rutas de ventas
+app.use("/api/sales", saleRoutes);
+// Rutas de autenticación de administradores
+app.use("/api/admin", adminRoutes);
 
 
 // Redirijo todas las peticiones a /dashboard a viewRoutes.js

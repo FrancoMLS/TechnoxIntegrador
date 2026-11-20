@@ -1,4 +1,4 @@
- const contenedorCarrito = document.getElementById("contenedorCarrito");
+const contenedorCarrito = document.getElementById("contenedorCarrito");
         const totalCarrito = document.getElementById("totalCarrito");
 
         function mostrarCarrito() {
@@ -42,7 +42,7 @@
             let producto = carrito.find(p => p.id == id);
 
             if (producto) {
-                producto.cantidad += cambio;
+                producto.cantidad = Number(producto.cantidad) + Number(cambio);
 
                 if (producto.cantidad <= 0) {
                     carrito = carrito.filter(p => p.id != id);

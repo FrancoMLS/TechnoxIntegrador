@@ -50,10 +50,19 @@ const validateProduct = (req, res, next) => {
 
     next();
 };
+// Verificar que haya un administrador con sesión iniciada
+const verificarAdmin = (req, res, next) => {
+    if (!req.session.admin) {
+        return res.redirect("/dashboard/indexAdmin");
+    }
+
+    next();
+};
 
 // Exportamos nuestros middlewares para llevarlos a otros modulos
 export {
     loggerUrl,
     validateId,
-    validateProduct
+    validateProduct,
+    verificarAdmin
 }

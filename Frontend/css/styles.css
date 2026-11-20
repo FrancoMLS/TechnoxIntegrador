@@ -860,3 +860,120 @@ button#botonComprar:hover {
     }
 }
 
+
+/* =================================================
+       FORMULARIOS DE ALTA Y MODIFICACIÓN - ADMIN
+================================================= */
+
+#formularioAgregarProducto,
+#formularioModificarProducto {
+    width: 100%;
+    max-width: 550px;
+    margin: 25px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border: 2px solid var(--turquesa-principal);
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(48, 30, 99, 0.12);
+}
+
+/* Títulos */
+#formularioAgregarProducto h2,
+#formularioModificarProducto h2 {
+    color: var(--violeta-principal);
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+/* Organización de los campos */
+#formNuevoProducto,
+#formModificarProducto {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Etiquetas */
+#formNuevoProducto label,
+#formModificarProducto label {
+    color: var(--violeta-principal);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Campos de texto y select */
+#formNuevoProducto input,
+#formNuevoProducto select,
+#formModificarProducto input,
+#formModificarProducto select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efecto al seleccionar un campo */
+#formNuevoProducto input:focus,
+#formNuevoProducto select:focus,
+#formModificarProducto input:focus,
+#formModificarProducto select:focus {
+    border-color: var(--turquesa-principal);
+    box-shadow: 0 0 0 3px rgba(15, 197, 206, 0.2);
+}
+
+/* Botones de los formularios */
+#formNuevoProducto button,
+#formModificarProducto button {
+    padding: 12px;
+    border: none;
+    border-radius: 9px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 8px;
+}
+
+/* Botón guardar */
+#formNuevoProducto button[type="submit"],
+#formModificarProducto button[type="submit"] {
+    background-color: var(--turquesa-principal);
+}
+
+#formNuevoProducto button[type="submit"]:hover,
+#formModificarProducto button[type="submit"]:hover {
+    background-color: var(--violeta-principal);
+    transform: translateY(-2px);
+}
+
+/* Botón cancelar */
+#cancelarAgregar,
+#cancelarModificar {
+    background-color: #777777;
+}
+
+#cancelarAgregar:hover,
+#cancelarModificar:hover {
+    background-color: #555555;
+}
+
+/* Adaptación a celulares */
+@media (max-width: 600px) {
+    #formularioAgregarProducto,
+    #formularioModificarProducto {
+        width: 92%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    #formularioAgregarProducto h2,
+    #formularioModificarProducto h2 {
+        font-size: 1.25rem;
+    }
+}

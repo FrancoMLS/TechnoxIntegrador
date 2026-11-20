@@ -4,8 +4,7 @@ const urlBase = "http://localhost:3001";
     const nombre = sessionStorage.getItem('nombreCliente');
     
     document.getElementById('nombre-usuario').textContent = nombre || 'invitado';
-  
-  
+
     function mostrarError(mensaje) {
         contenedorProductos.innerHTML = `
             <p class="mensaje error">${mensaje}</p>
