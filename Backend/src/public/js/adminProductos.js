@@ -5,6 +5,8 @@
     const botonAgregar = document.querySelector(".botonAgregar");
     const formularioAgregar = document.getElementById("formularioAgregarProducto");
     const botonCancelarAgregar = document.getElementById("cancelarAgregar");
+    const botonDescargar = document.getElementById('descargarVentas')
+
 
     botonAgregar.addEventListener("click", () => {
         formularioAgregar.style.display = "block";
@@ -317,4 +319,20 @@ async function abrirFormularioModificar(id) {
         alert("Error al obtener los datos del producto");
     }
 }
+
+
+botonDescargar.addEventListener("click", async () => {
+    const res = await fetch('http://localhost:3001/api/sales/exportar', { credentials: 'include' })
+  if (!res.ok) return alert('Error al descargar');
+
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'ventas.xlsx';
+  a.click();
+  URL.revokeObjectURL(url);
+})
+
+
     obtenerProductos();
