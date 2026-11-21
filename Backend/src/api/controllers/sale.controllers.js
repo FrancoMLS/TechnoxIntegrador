@@ -1,4 +1,5 @@
-
+import ExcelJS from 'exceljs';
+import connection from '../database/db.js'; 
 import SaleModels from "../models/sale.models.js";
 
 export const createSale = async (req, res) => {
@@ -68,4 +69,54 @@ export const createSale = async (req, res) => {
             mensaje: error.message || "No se pudo guardar la venta."
         });
     }
+};
+
+
+
+export const descargarVentas = async (req, res) => {
+  try {
+    const [rows] = await connection.query(`
+      SELECT v.id AS venta_id, v.fecha, v.nombre_cliente, v.total,
+             d.nombre_producto, d.precio_unitario, d.cantidad, d.subtotal
+      FROM ventas v
+      JOIN detalle_ventas d ON d.venta_id = v.id
+      ORDER BY v.fecha DESC, v.id DESC
+    `);
+
+    const workbook = new ExcelJS.Workbook();
+    const sheet = workbook.addWorksheet('Ventas');
+
+    sheet.columns = [
+      { header: 'N° Venta', key: 'venta_id', width: 10 },
+      { header: 'Fecha', key: 'fecha', width: 14 },
+      { header: 'Cliente', key: 'nombre_cliente', width: 25 },
+      { header: 'Producto', key: 'nombre_producto', width: 30 },
+      { header: 'Precio unitario', key: 'precio_unitario', width: 16 },
+      { header: 'Cantidad', key: 'cantidad', width: 10 },
+      { header: 'Subtotal', key: 'subtotal', width: 14 },
+      { header: 'Total venta', key: 'total', width: 14 },
+    ];
+
+    // mysql2 devuelve los DECIMAL como texto, así que los paso a número
+    sheet.addRows(rows.map(r => ({
+      ...r,
+      precio_unitario: Number(r.precio_unitario),
+      subtotal: Number(r.subtotal),
+      total: Number(r.total),
+    })));
+
+    sheet.getRow(1).font = { bold: true };
+
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
+    res.setHeader('Content-Disposition', 'attachment; filename=ventas.xlsx');
+
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'No se pudo generar el Excel' });
+  }
 };
