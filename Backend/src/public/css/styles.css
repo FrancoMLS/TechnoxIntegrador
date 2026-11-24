@@ -193,7 +193,7 @@ button.descargarVentas:hover {
 
 
 /* =================================================
-         PANTALLA PRODUCTOS (VISTA CLIENTE)
+           PANTALLA PRODUCTOS (VISTA CLIENTE)
 ================================================= */
 
 .barraNavProductos {
@@ -296,7 +296,7 @@ button.descargarVentas:hover {
 
 
 /* =================================================
-         SECCIÓN DE CATEGORÍAS
+           SECCIÓN DE CATEGORÍAS
 ================================================= */
 
 .seccion-categorias {
@@ -359,9 +359,208 @@ button.descargarVentas:hover {
     background-color: var(--turquesa-principal);
 }
 
+/* =================================================
+                    CARRITO
+================================================= */
+
+button.botonCarritoMenos,
+button.botonCarritoMas {
+    width: auto;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--turquesa-principal);
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button.botonCarritoMenos:hover,
+button.botonCarritoMas:hover {
+    background-color: var(--violeta-principal);
+} 
+
+button.botonCarritoEliminar {
+    background-color: #EA3323;
+}
+
+button.botonCarritoEliminar:hover {
+    background-color: #b32d21;
+}
+
+.agregadoCorrectamenteAlCarrito {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--turquesa-principal);
+}
+
+
+
+
+#contenedorCarrito {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+}
+
+.card-producto-carrito {
+    border: 2px solid var(--turquesa-principal);
+    background-color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex: 0 1 250px;
+}
+
+.card-producto-carrito:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-producto-carrito .card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 30px;
+}
+
+.descrip-carrito-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+button.botonCarritoLogoEliminar {
+    background-color: #EA3323;
+    width: 80px;
+    transition: background-color 0.3s;
+}
+
+button.botonCarritoLogoEliminar:hover {
+    background-color: #b32d21;
+}
+
+.botonesMasYMenos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px; 
+    border: 1px solid var(--turquesa-principal);
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
+.totalCarrito {
+    text-align: center;
+    margin-top: 10px;
+}
+
+button#botonComprar {
+    background-color: var(--turquesa-principal);
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 24px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button#botonComprar:hover {
+    background-color: var(--violeta-principal);
+}
 
 /* =================================================
-         PANTALLA PRODUCTOS (VISTA ADMIN)
+            PANTALLA TICKET
+================================================= */
+
+.mainTicket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px
+}
+
+
+.mainTicket > p {
+    text-align: center;
+    color: var(--violeta-principal);
+    font-size: 2rem;
+    margin: 10px;
+}
+
+#ticket {
+    width: 80%;
+    max-width: 800px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 2px dashed var(--violeta-principal);
+    text-align: center;
+}
+
+.botonTicket {
+    background-color: var(--turquesa-principal);
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 24px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.botonTicket:hover {
+    background-color: var(--violeta-principal);
+}
+
+.productoTicket { 
+    display: flex;
+    justify-content: space-between;
+}
+
+.productoTicket p:first-child {
+    flex: 2;
+    text-align: left;
+}
+
+.productoTicket p:not(:first-child) {
+    flex: 1;
+    text-align: center;
+}
+
+.nombreEmpresaTicket {
+    font-size: 2rem;
+    margin-top: 5px;
+    border: 2px solid black;
+}
+
+.nombreClienteTicket {
+    margin: 10px;
+}
+
+.totalTicket {
+    font-weight: bold;
+    text-align: right;
+    margin: 10px;
+}
+
+
+
+/* =================================================
+        PANTALLA PRODUCTOS (VISTA ADMIN)
 ================================================= */
 
 /* ---------- Nav Admin ---------- */
@@ -375,13 +574,12 @@ button.descargarVentas:hover {
 }
 
 .barraNavAdminProductos a {
-    font-size: 1.5rem;
-    padding: 30px 28px;
-    transition: background-color 0.3s;
+    font-size: 1.2rem;
+    transition: color 0.3s;
 }
 
 .barraNavAdminProductos a:hover {
-    background-color: #dbdee1;
+    color: var(--violeta-principal);
 }
 
 .barraNavAdminProductos img {
@@ -389,13 +587,6 @@ button.descargarVentas:hover {
     max-width: 250px;
     width: auto;
     object-fit: contain;
-}
-
-.menuAdmin {
-    display: flex;
-    width: 300px;
-    justify-content: space-around;
-    align-items: center;
 }
 
 .listaMenuAdmin {
@@ -637,6 +828,8 @@ button.descargarVentas:hover {
     .barraNavAdminProductos {
         flex-direction: column;
         height: auto;
+        align-items: center;
+        justify-content: center;
     }
 
     .barraNavAdminProductos img {
@@ -660,6 +853,7 @@ button.descargarVentas:hover {
         text-align: center;
     }
 }
+
 
 /* =================================================
        FORMULARIOS DE ALTA Y MODIFICACIÓN - ADMIN

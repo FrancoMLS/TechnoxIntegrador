@@ -55,7 +55,7 @@ const verificarAdmin = (req, res, next) => {
     if (!req.session.admin) {
         return res.redirect("/dashboard/indexAdmin");
     }
-
+    res.set("Cache-Control", "no-store");
     next();
 };
 

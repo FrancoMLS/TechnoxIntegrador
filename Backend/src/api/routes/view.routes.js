@@ -3,7 +3,7 @@
 ========================== */
 
 import { Router } from "express";
-import { vistaAdmin, vistaAdminIndex, vistaCarrito, vistaClienteIndex, vistaProductosCliente } from "../controllers/view.controllers.js";
+import { vistaAdmin, vistaAdminIndex, vistaCarrito, vistaClienteIndex, vistaProductosCliente, vistaTicket } from "../controllers/view.controllers.js";
 import { verificarAdmin } from "../middlewares/middlewares.js";
 const router = Router();
 
@@ -21,6 +21,8 @@ router.get("/principalCliente", vistaProductosCliente);
 
 // Vista eliminar
 router.get("/principalAdmin", verificarAdmin, vistaAdmin);
+
+router.get("/ticket", vistaTicket);
 
 // Exportamos las rutas de las vistas (todo de una)
 export default router;

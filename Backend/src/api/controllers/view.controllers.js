@@ -30,3 +30,7 @@ export const vistaCarrito = (req, res) =>  {
         title: "Technox | Mi carrito"
     });
 }
+
+export const vistaTicket = (req, res) => {
+    res.render("ticket", { title: "Technox | Ticket" });
+};

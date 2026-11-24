@@ -1,0 +1,21 @@
+<%- include("partials/head.ejs") %>
+
+<body>
+    <nav class="barraNav">
+        <img src="/img/Gemini_Generated_Image_wu7h99wu7h99wu7h_nobg.png" alt="Logo Technox">
+    </nav>
+
+    <main class="mainTicket">
+        <p>¡Gracias por su compra!</p>
+
+        <div id="ticket">
+
+        </div>
+
+        <button class="botonTicket" onclick="descargarPDF()">Descargar pdf</button>
+        <button class="botonTicket" onclick="salir()">Salir</button>
+    </main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="/js/ticket.js"></script>

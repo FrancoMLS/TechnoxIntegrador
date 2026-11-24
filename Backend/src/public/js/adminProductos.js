@@ -6,7 +6,7 @@
     const formularioAgregar = document.getElementById("formularioAgregarProducto");
     const botonCancelarAgregar = document.getElementById("cancelarAgregar");
     const botonDescargar = document.getElementById('descargarVentas')
-
+    const botonSalir = document.getElementById("botonSalir");
 
     botonAgregar.addEventListener("click", () => {
         formularioAgregar.style.display = "block";
@@ -333,6 +333,27 @@ botonDescargar.addEventListener("click", async () => {
   a.click();
   URL.revokeObjectURL(url);
 })
+
+
+botonSalir.addEventListener("click", async (event) => {
+    event.preventDefault();
+
+    try {
+        const respuesta = await fetch("/api/admin/logout", { method: "POST" });
+
+        if (!respuesta.ok) {
+            const data = await respuesta.json();
+            return alert(data.mensaje || "No se pudo cerrar la sesión.");
+        }
+
+        window.location.href = "/dashboard/indexAdmin";
+
+    } catch (error) {
+        console.error(error);
+        alert("Error al conectar con el servidor.");
+    }
+});
+
 
 
     obtenerProductos();
