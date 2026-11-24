@@ -76,12 +76,14 @@ export const createSale = async (req, res) => {
 export const descargarVentas = async (req, res) => {
   try {
     const [rows] = await connection.query(`
-      SELECT v.id AS venta_id, v.fecha, v.nombre_cliente, v.total,
-             d.nombre_producto, d.precio_unitario, d.cantidad, d.subtotal
-      FROM ventas v
-      JOIN detalle_ventas d ON d.venta_id = v.id
-      ORDER BY v.fecha DESC, v.id DESC
-    `);
+  SELECT v.id AS venta_id,
+         DATE_FORMAT(v.fecha, '%d/%m/%Y %H:%i') AS fecha,
+         v.nombre_cliente, v.total,
+         d.nombre_producto, d.precio_unitario, d.cantidad, d.subtotal
+  FROM ventas v
+  JOIN detalle_ventas d ON d.venta_id = v.id
+  ORDER BY v.id DESC
+`);
 
     const workbook = new ExcelJS.Workbook();
     const sheet = workbook.addWorksheet('Ventas');

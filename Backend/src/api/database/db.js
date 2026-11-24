@@ -12,7 +12,13 @@ const connection = mysql2.createPool({
     host: database.host,
     database: database.name,
     user: database.user,
-    password: database.password
+    password: database.password,
+    timezone: "-03:00"
+});
+
+// Cada vez que el pool abre una conexión nueva, le fija la zona horaria a MySQL
+connection.pool.on("connection", (conn) => {
+    conn.query("SET time_zone = '-03:00'");
 });
 
 // Exportamos el pool de conexinoes para poder ser usado en otros modulos
